@@ -1,0 +1,35 @@
+{
+  "python": [
+    "lambda l: reduce(lambda z, x: z + [y + [x] for y in z], l, [[]])",
+    "lambda L: [] if L==[] else qsort([x for x in L[1:] if x< L[0]]) + L[0:1] + qsort([x for x in L[1:] if x>=L[0]]",
+    "reduce( (lambda r,x: r-set(range(x**2,n,x)) if (x in r) else r), range(2,int(n**0.5)), set(range(2,n)))",
+    "indices = [i for i in range(len(lst)) if lst[i]=='Alice']",
+    "import base64, sys; base64.decode(open(sys.argv[1], 'rb'), ",
+    "f = lambda x: [[y for j, y in enumerate(set(x)) if (i >> j) & 1] for i in range(2**len(set(x)))]",
+    "f = lambda l: reduce(lambda z, x: z + [y + [x] for y in z], l, [[]])",
+    "print ''\n''.join(line.split(':',1)[0] for line in open('/etc/passwd'))",
+    "s = sum([num for num in a if num%2 == 0])",
+    "with open('data.txt','a',newline=''\n'') as f: f.write('Python is awesome')"
+  ],
+
+  "javaScript": [
+    "const cookie = name => `; ${document.cookie}`.split(`; ${name}=`).pop().split(';').shift();",
+    "const rgbToHex = (r, g, b) => '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);",
+    "const isDateValid = (...val) => !Number.isNaN(new Date(...val).valueOf());",
+    "const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1)",
+    "const dayDif = (date1, date2) => Math.ceil(Math.abs(date1.getTime() - date2.getTime()) / 86400000)",
+    "const randomHex = () => `#${Math.floor(Math.random() * 0xffffff).toString(16).padEnd(6, '0')}`;",
+    "const timeFromDate = date => date.toTimeString().slice(0, 8);",
+    "const average = (...args) => args.reduce((a, b) => a + b) / args.length;",
+    "const isNotEmpty = arr => Array.isArray(arr) && arr.length > 0;",
+    "const shuffleArray = (arr) => arr.sort(() => 0.5 - Math.random());"
+  ],
+
+  "java": [
+    "List<String> fileLines = Files.readAllLines(Paths.get(path))",
+    "Map<Boolean, List<Integer>> passedFailedMap = Stream.of(49, 58, 76, 82, 88, 90).collect(Collectors.partitioningBy(i -> i > 60));",
+    "Arrays.asList(14, 35, -7, 46, 98).stream().reduce(Integer::min);",
+    "List<Integer> numbers = new ArrayList<Integer>(Arrays.asList(1, 2, 3));",
+    "Map<String, Collection<Integer>> map = new HashMap<String, Collection<Integer>>();"
+  ]
+}
