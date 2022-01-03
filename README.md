@@ -1,6 +1,8 @@
 # TUI-CPM-Test
 
 (c) Nugo Mchedlishvili
+
+
 TUI-CPM-Test is a  speed typing test,based on single line of code. CPM := CODE PER MINUTE
 
 ## Installation
