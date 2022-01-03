@@ -3,9 +3,18 @@ from curses.textpad import Textbox, rectangle
 
 
 # get username as an input
-def getName(stdscr):
-    editwin = curses.newwin(5, 30, 2, 1)
-    rectangle(stdscr, 1, 0, 1+5+1, 1+30+1)
+
+
+def getName(stdscr, w, h):
+    editwin = curses.newwin(2, 7, h//2, w//2-7)
+    stdscr.addstr(h//2-10, w//2,
+                  """
+                                Hey There! 
+
+                          Tell us your name first 
+                    
+                            and press ctrl + g""")
+    rectangle(stdscr, h//2-2, w//2-12, h//2+2, w//2+12)
     stdscr.refresh()
     box = Textbox(editwin)
     box.edit()
@@ -14,14 +23,16 @@ def getName(stdscr):
 
 
 # menu,to choose the language
+
+
 def choose_language(stdscr):
     stdscr.erase()
     stdscr.addstr("""
     Choose your language:
     press j for java
     press p for python
-    press s for javascript
-""")
+    press s for javascript (default)
+""", curses.color_pair(2))
     key = stdscr.getkey()
 
     if ord(key) == ord('j'):

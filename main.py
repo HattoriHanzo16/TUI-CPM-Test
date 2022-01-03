@@ -6,9 +6,9 @@ from getSnippet import getSnippet
 import time
 
 
-def display(stdscr, target, current, wpm=0):
-    stdscr.addstr(2, 0, target)
-    stdscr.addstr(0, 0, f"WPM: {wpm}")
+def display(stdscr, target, current, w, wpm=0,):
+    stdscr.addstr(5, 4, target)
+    stdscr.addstr(1, w//2-5, f"WPM: {wpm}")
 
     for i, char in enumerate(current):
         correct_char = target[i]
@@ -16,11 +16,17 @@ def display(stdscr, target, current, wpm=0):
         if correct_char != char:
             color = curses.color_pair(2)
 
-        stdscr.addstr(2, i, char, color)
+        stdscr.addstr(5, i+4, char, color)
 
 
-def cpm_test(stdscr, choice):
+# code per minute counter. choice is programming language
+
+
+def cpm_test(stdscr, choice, width):
+
     target_text = getSnippet(choice)
+    while len(target_text) > width:
+        target_text = getSnippet(choice)
     current_text = []
     wpm = 0
     start_time = time.time()
@@ -31,7 +37,7 @@ def cpm_test(stdscr, choice):
         wpm = round((len(current_text) / (time_end/60))/5)
 
         stdscr.erase()
-        display(stdscr, target_text, current_text, wpm)
+        display(stdscr, target_text, current_text, width, wpm)
         stdscr.refresh()
 
         joined_text = "".join(current_text)
@@ -47,6 +53,7 @@ def cpm_test(stdscr, choice):
         if len(key) == 1 and ord(key) == 27:
             break
 
+        # Handling deleting characters
         if key in ("KEY_BACKSPACE"):
             if len(current_text) > 0:
                 current_text.pop()
@@ -55,20 +62,22 @@ def cpm_test(stdscr, choice):
             current_text.append(key)
 
 
+# main method
 def main(stdscr):
+    height, width = stdscr.getmaxyx()
     curses.init_pair(1, curses.COLOR_GREEN, curses.COLOR_BLACK)
     curses.init_pair(2, curses.COLOR_RED, curses.COLOR_BLACK)
     curses.init_pair(3, curses.COLOR_WHITE, curses.COLOR_BLACK)
-
-    name = getName(stdscr)
+    name = getName(stdscr, width, height)
     lang = choose_language(stdscr)
     opening(stdscr, name)
 
     while True:
-        cpm_test(stdscr, lang)
+        cpm_test(stdscr, lang, width)
         stdscr.erase()
         stdscr.addstr(
-            4, 4, "Finished! Press ESC key to Exit.\nPress any key to continue...")
+            5, 5, "Finished! Press ESC key to Exit.\nPress any key to continue...")
+
         key1 = stdscr.getkey()
         if ord(key1) == 27:
             break
