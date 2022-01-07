@@ -7,8 +7,9 @@ TUI-CPM-Test is a  speed typing test,based on single line of code. CPM := CODE P
 
 ## Installation
 
-Clone this repository
-open terminal and install curses module
+(1) Clone this repository
+(2) open terminal 
+(3) install curses module
 
 ```bash
 pip install windows-curses
